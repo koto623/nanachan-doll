@@ -8,7 +8,12 @@
     "start": "next start",
     "lint": "eslint './**/*.{js,jsx,ts,tsx,cjs,mjs}'",
     "format": "prettier . --write",
-    "prepare": "husky"
+    "prepare": "husky",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "test": "NODE_NO_WARNINGS=1 jest",
+    "test:watch": "NODE_NO_WARNINGS=1 jest --watch",
+    "test:coverage": "NODE_NO_WARNINGS=1 jest --coverage"
   },
   "dependencies": {
     "next": "15.0.2",
@@ -16,8 +21,19 @@
     "react-dom": "19.0.0-rc-02c0e824-20241028"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^3.2.2",
     "@next/eslint-plugin-next": "^15.0.2",
-    "@types/node": "^20",
+    "@storybook/addon-essentials": "^8.4.1",
+    "@storybook/addon-interactions": "^8.4.1",
+    "@storybook/addon-onboarding": "^8.4.1",
+    "@storybook/blocks": "^8.4.1",
+    "@storybook/nextjs": "^8.4.1",
+    "@storybook/react": "^8.4.1",
+    "@storybook/test": "^8.4.1",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.0.1",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.8.7",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@typescript-eslint/parser": "^8.12.2",
@@ -26,17 +42,27 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-storybook": "^0.10.2",
     "husky": "^9.1.6",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "lint-staged": "^15.2.10",
     "postcss": "^8",
     "prettier": "^3.3.3",
+    "storybook": "^8.4.1",
     "tailwindcss": "^3.4.1",
+    "ts-jest": "^29.2.5",
     "typescript": "^5"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix",
       "prettier --write"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
     ]
   }
 }
