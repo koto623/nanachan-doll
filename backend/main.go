@@ -101,6 +101,8 @@ func handleVote(w http.ResponseWriter, r *http.Request) {
     voteData.Votes[vote]++
     voteData.mu.Unlock()
     fmt.Println(voteData.Votes)
+	count := voteData.Votes[vote]
+	sendJSONResponse(w, true, "投票が完了しました", vote, count)
 }
 
 

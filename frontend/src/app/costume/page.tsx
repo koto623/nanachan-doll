@@ -12,13 +12,13 @@ export default function Home() {
     setMessage('');
 
     try {
-      const response = await fetch('http://localhost:8080/api/vote1', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ vote: selectedOption }),
-      });
+        const response = await fetch('/api/vote', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ vote: selectedOption }),
+          });
 
       if (response.ok) {
         setMessage('投票が完了しました！');
