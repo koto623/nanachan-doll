@@ -31,7 +31,7 @@ func main() {
 	// CORSミドルウェアを適用
 	mux := http.NewServeMux()
 	mux.HandleFunc("/api/vote1", enableCORS(handleVote))
-
+	mux.HandleFunc("/api/result", enableCORS(handleResult))
 	// 静的ファイルの提供
 	fs := http.FileServer(http.Dir("static"))
 	mux.Handle("/", fs)
@@ -114,4 +114,27 @@ func sendJSONResponse(w http.ResponseWriter, success bool, message, option strin
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(response)
+}
+
+func handleResult(w http.ResponseWriter, r *http.Request) {
+    if r.Method != http.MethodGet {
+        http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+        return
+    }
+
+    voteData.mu.Lock()
+    // 投票データのコピーを作成
+    results := make(map[string]int)
+    for k, v := range voteData.Votes {
+        results[k] = v
+    }
+    voteData.mu.Unlock()
+
+    // レスポンスの送信
+    w.Header().Set("Content-Type", "application/json")
+    if err := json.NewEncoder(w).Encode(results); err != nil {
+        log.Printf("Error encoding response: %v", err)
+        http.Error(w, "Internal server error", http.StatusInternalServerError)
+        return
+    }
 }
