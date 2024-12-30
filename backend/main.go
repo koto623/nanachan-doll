@@ -51,7 +51,7 @@ func enableCORS(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// CORSヘッダーの設定
 		w.Header().Set("Access-Control-Allow-Origin", "*")
-		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS, GET")
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 
 		// OPTIONSリクエストの処理
