@@ -1,0 +1,14 @@
+.carousel {
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+  height: 100vh;
+}
+.carouselItem {
+  scroll-snap-align: start;
+  height: 100vh;
+}
+
+.content {
+  padding: 5%;
+  width: 100%;
+}

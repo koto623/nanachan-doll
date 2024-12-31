@@ -3,6 +3,10 @@ import PageTitle from '../../ui/pageTitle/page';
 import SlideShow from '../../ui/slideShow/page';
 import styles from './header.module.css';
 
+type HeaderProps = {
+  className?: string;
+};
+
 const images = [
   {
     src: '/images/slide1.png',
@@ -18,9 +22,9 @@ const images = [
   },
 ];
 
-export default function Header() {
+export default function Header({ className = '' }: HeaderProps) {
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${className}`}>
       <Navbar />
       <SlideShow images={images} />
       <PageTitle

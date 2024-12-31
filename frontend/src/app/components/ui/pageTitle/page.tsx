@@ -2,11 +2,11 @@
 import { usePathname } from 'next/navigation';
 import styles from './pageTitle.module.css';
 
-interface PageTitleProps {
+type PageTitleProps = {
   mainText: string;
   subText?: string;
   className?: string;
-}
+};
 
 export default function PageTitle({ mainText, subText, className = '' }: PageTitleProps) {
   const pathname = usePathname();
