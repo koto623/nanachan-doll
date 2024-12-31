@@ -1,5 +1,6 @@
 'use client';
 import { useEffect } from 'react';
+import Header from '../components/layout/header/page';
 
 export default function Home() {
   useEffect(() => {
@@ -18,5 +19,9 @@ export default function Home() {
     fetchData();
   }, []);
 
-  return <div className="p-6 max-w-md mx-auto">top</div>;
+  return (
+    <div className="p-6 max-w-md mx-auto">
+      <Header></Header>
+    </div>
+  );
 }
