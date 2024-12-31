@@ -5,7 +5,11 @@
 }
 .carouselItem {
   scroll-snap-align: start;
-  height: 100vh;
+}
+
+.carouselItem:last-child {
+  scroll-snap-align: end;
+  height: fit-content;
 }
 
 .content {

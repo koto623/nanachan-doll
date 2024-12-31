@@ -1,6 +1,7 @@
 'use client';
 import { useEffect } from 'react';
 import Header from '../components/layout/header/page';
+import Footer from '../components/layout/footer/page';
 import styles from './top.module.css';
 
 export default function Home() {
@@ -42,6 +43,7 @@ export default function Home() {
         <h2>人気の衣装は&#63;</h2>
         <p>1位</p>
       </section>
+      <Footer className={styles.carouselItem}></Footer>
     </div>
   );
 }
