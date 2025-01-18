@@ -5,7 +5,7 @@ FROM golang:latest AS builder
 WORKDIR /app
 
 # 3. Goモジュールを初期化して依存関係をインストール
-COPY go.mod go.sum ./
+COPY go.mod ./
 RUN go mod download
 
 # 4. アプリケーションのソースコードをコピー
