@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
   try {
-    const API_URL = 'localhost';
+    const API_URL = 'nana-api';
     const response = await fetch(`http://${API_URL}:8080/api/result`);
 
     if (!response.ok) {
