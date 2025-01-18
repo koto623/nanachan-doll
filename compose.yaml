@@ -1,0 +1,31 @@
+services:
+  nana-nextjs:
+    build:
+      context: ./frontend # Dockerfile があるディレクトリを指定
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000" # ホストとコンテナのポートをマッピング
+    volumes:
+      - ./frontend:/app # ホスト側のコードをコンテナ内にマウント
+      - /app/node_modules # node_modules をコンテナ内で管理
+      - /app/.yarn
+    environment:
+      NODE_ENV: development # 環境変数を設定
+    networks:
+      - net_nana
+
+  nana-api:
+    build:
+      context: ./backend # Dockerfile があるディレクトリを指定
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8080:8080" # ホストの8080ポートをコンテナの8080ポートにマッピング
+    volumes:
+      - ./backend:/app # ローカルディレクトリをコンテナにマウント
+    command: sh -c "go mod download && go run main.go" # 自動的に変更を反映するコマンド
+    networks:
+      - net_nana
+      
+networks:
+  net_nana:
+    external: true
