@@ -1,0 +1,22 @@
+.header{
+  position: relative;
+}
+
+.main {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.pageTitle {
+  position: absolute;
+  top: 10%;
+  right: 15%;
+}
+
+@media (max-width: 768px) {
+  .pageTitle {
+    right: 5%;
+  }
+}
