@@ -1,0 +1,77 @@
+.container {
+  position: absolute;
+  height: 85vh;
+  z-index: 10;
+}
+
+.content {
+  padding: 1rem;
+  color: white;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.mainText {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+  opacity: 0;
+}
+
+.subText {
+  font-size: 1.5rem;
+  font-weight: 500;
+  opacity: 0;
+  line-height: 1.6;
+}
+
+.vertical {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  margin-left: auto;
+}
+
+.vertical .mainText {
+  margin-bottom: 0;
+  margin-left: 2rem;
+}
+
+.fadeIn {
+  animation: fadeIn 1s ease forwards;
+}
+
+.subText {
+  animation-delay: 0.5s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .mainText {
+    font-size: 2.5rem;
+  }
+
+  .subText {
+    font-size: 1.4rem;
+  }
+
+  .vertical .mainText {
+    margin-left: 1rem;
+  }
+}
+
+/* 縦書き時の文字間調整 */
+.vertical .mainText,
+.vertical .subText {
+  letter-spacing: 0.1em;
+}
