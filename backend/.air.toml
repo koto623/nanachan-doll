@@ -1,0 +1,48 @@
+# Air設定ファイル
+root = "."
+tmp_dir = "tmp"
+
+[build]
+# バイナリファイルのパス
+bin = "./tmp/main"
+# メインパッケージへのパス
+cmd = "go build -o ./tmp/main ."
+# 監視対象のファイル拡張子
+include_ext = ["go", "tpl", "tmpl", "html", "env"]
+# 除外するディレクトリ
+exclude_dir = ["assets", "tmp", "vendor", "testdata"]
+# 除外するファイル
+exclude_file = []
+# 除外するファイルの正規表現
+exclude_regex = ["_test\\.go"]
+# シャットダウン時に一時ファイルを削除
+exclude_unchanged = true
+# ビルド後すぐに実行
+follow_symlink = true
+# エラー発生時に通知
+log = "air.log"
+# 実行前にtmpディレクトリをクリア
+clear = true
+# カスタムバイナリ引数
+args_bin = []
+# ファイル変更時のディレイ（ミリ秒）
+delay = 1000
+
+[log]
+# ログを表示
+time = true
+
+[color]
+# ログの色分け
+main = "magenta"
+watcher = "cyan"
+build = "yellow"
+runner = "green"
+
+[misc]
+# Ctrl+cで終了
+clean_on_exit = true
+
+[screen]
+clear_on_rebuild = true
+keep_scroll = true
