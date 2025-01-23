@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import Header from '../components/layout/header/page';
 import Footer from '../components/layout/footer/page';
 import styles from './top.module.css';
+import { ProfileCard } from '../components/ui/profileCard/profileCard';
 
 export default function Home() {
   useEffect(() => {
@@ -34,14 +35,7 @@ export default function Home() {
       <Header className={styles.carouselItem}></Header>
       <section className={`${styles.carouselItem} ${styles.content}`}>
         <h2 className={styles.title}>プロフィール</h2>
-        <div className={styles.profile}>
-          {profileData.map((item, index) => (
-            <div key={index} className={styles.profileItem}>
-              <div className={styles.label}>{item.label}</div>
-              <div className={styles.value}>{item.value}</div>
-            </div>
-          ))}
-        </div>{' '}
+        <ProfileCard data={profileData} />
       </section>
       <section className={`${styles.carouselItem} ${styles.content}`}>
         <h2 className={styles.title}>人気の衣装は&#63;</h2>
