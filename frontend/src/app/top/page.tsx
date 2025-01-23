@@ -21,26 +21,30 @@ export default function Home() {
     fetchData();
   }, []);
 
+  const profileData = [
+    { label: 'いる場所', value: 'メンズ館1階エントランス前' },
+    { label: '生年月日', value: '1973年4月28日' },
+    { label: '身長', value: '6m10cm' },
+    { label: '体重', value: '600kg' },
+    { label: '素材', value: 'FRP硬質塩ビ樹脂' },
+  ];
+
   return (
     <div className={styles.carousel}>
       <Header className={styles.carouselItem}></Header>
       <section className={`${styles.carouselItem} ${styles.content}`}>
-        <h2>プロフィール</h2>
-        <dl>
-          <dt>いる場所</dt>
-          <dd>メンズ館1階エントランス前</dd>
-          <dt>生年月日</dt>
-          <dd>1973.4.28</dd>
-          <dt>身長</dt>
-          <dd>6m10cm</dd>
-          <dt>体重</dt>
-          <dd>600kg</dd>
-          <dt>素材</dt>
-          <dd>FRP硬質塩ビ樹脂</dd>
-        </dl>
+        <h2 className={styles.title}>プロフィール</h2>
+        <div className={styles.profile}>
+          {profileData.map((item, index) => (
+            <div key={index} className={styles.profileItem}>
+              <div className={styles.label}>{item.label}</div>
+              <div className={styles.value}>{item.value}</div>
+            </div>
+          ))}
+        </div>{' '}
       </section>
       <section className={`${styles.carouselItem} ${styles.content}`}>
-        <h2>人気の衣装は&#63;</h2>
+        <h2 className={styles.title}>人気の衣装は&#63;</h2>
         <p>1位</p>
       </section>
       <Footer className={styles.carouselItem}></Footer>

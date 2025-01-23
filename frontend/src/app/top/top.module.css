@@ -1,3 +1,10 @@
+.title{
+  margin: 20px 0;
+  text-align: center;
+  font-size: 2rem;
+  text-decoration: underline;
+}
+
 .carousel {
   overflow-x: hidden;
   scroll-snap-type: y mandatory;
@@ -15,4 +22,48 @@
 .content {
   padding: 5%;
   width: 100%;
+}
+
+.profile {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  width: 100%;
+}
+
+.profileItem {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.label {
+  padding: 1rem 2rem;
+  background-color: rgb(48, 48, 69);
+  color: #fff;
+  min-height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: pre-wrap;
+}
+
+.value {
+  padding: 1rem;
+  background: white;
+  border: 1px solid #eee;
+}
+
+@media (max-width: 768px) {
+  .profile {
+    margin-top: 10%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .profileItem {
+    width: 100%;
+  }
 }
