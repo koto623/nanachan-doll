@@ -1,0 +1,123 @@
+.carousel {
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory;
+    height: 100vh;
+}
+.carouselItem {
+    scroll-snap-align: start;
+}
+  
+.carouselItem:last-child {
+    scroll-snap-align: end;
+    height: fit-content;
+}
+  
+.content {
+    padding: 5%;
+    width: 100%;
+}
+
+.container {
+    font-family: Arial, sans-serif;
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #333;
+}
+
+.timeline {
+    position: relative;
+    margin: 0 auto;
+    padding: 10px;
+    width: 90%;
+    max-width: 1000px;
+    box-sizing: border-box;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%; /* タイムラインの中央に配置 */
+    transform: translateX(-50%); /* 線の幅の半分だけずらして中央揃え */
+    width: 5px; /* 線の幅 */
+    height: 100%; /* 線の高さ（タイムライン全体） */
+    background: #ccc; /* 線の色 */
+    z-index: 0; /* 他の要素の後ろに配置 */
+}
+
+.timelineItem {
+    position: relative;
+    display: flex;
+    margin-bottom: 3rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.timelineItem:nth-child(odd) {
+    flex-direction: row-reverse;
+}
+
+.timelineItem:nth-child(even) {
+    flex-direction: row;
+}
+  
+.timelineItem::before {
+    content: '';
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    background: #ccc;
+    z-index: 1;
+}
+
+.timelineYear {
+    position: relative;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #014b9f;
+    text-align: center;
+    min-width: 100px;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    order: 2;
+}
+
+.timelineContent {
+    position: relative;
+    background: #f9f9f9;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    order: 1;
+}
+
+.timelineContent h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.timelineContent p {
+    margin: 0;
+    font-size: 1rem;
+    color: #666;
+}
+
+.timelineYearWrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
