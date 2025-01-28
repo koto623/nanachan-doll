@@ -5,11 +5,20 @@ import Footer from '../components/layout/footer/page';
 import styles from './history.module.css';
 
 export default function Home() {
+  const images = [
+    { src: '/images/history1.jpg', alt: 'history1' },
+    { src: '/images/history2.jpg', alt: 'history2' },
+    { src: '/images/history3.jpg', alt: 'history3' },
+  ];
   return (
     <div className={styles.carousel}>
-      <Header className={styles.carouselItem}></Header>
+      <Header
+        images={images}
+        mainText="これまでの変遷、誕生秘話"
+        subText=""
+        className={styles.carouselItem} // 追加のスタイルを指定
+      />
       <section className={`${styles.carouselItem} ${styles.content}`}>
-
         <main className={styles.main}>
           <h1 className={styles.title}>これまでの変遷、誕生秘話</h1>
 
