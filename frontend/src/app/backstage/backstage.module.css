@@ -1,0 +1,82 @@
+.carousel {
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory;
+    height: 100vh;
+}
+.carouselItem {
+    scroll-snap-align: start;
+}
+  
+.carouselItem:last-child {
+    scroll-snap-align: end;
+    height: fit-content;
+}
+  
+.content {
+    padding: 5%;
+    width: 100%;
+}
+
+.container {
+    font-family: Arial, sans-serif;
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.card {
+    width: 18rem;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    flex: 1 1 calc(33.333% - 1rem);
+    max-width: calc(33.333% - 1rem);
+}
+  
+.image {
+    border-radius: 0.5rem;
+    width: 100%;
+    height: auto;
+}
+  
+.cardBody {
+    padding: 1rem;
+}
+  
+.cardText {
+    font-size: 1rem;
+    color: #333;
+}
+
+.cardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem; /* カード間のスペース */
+    justify-content: center; /* カードを中央揃え */
+}
+
+.cardBody {
+    padding: 1rem;
+}
+  
+.cardText {
+    font-size: 1rem;
+    color: #333;
+}
+  
+  /* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .card {
+      flex: 1 1 calc(50% - 1rem); /* タブレットサイズで2枚並べる */
+      max-width: calc(50% - 1rem);
+  }
+}
+ 
+@media (max-width: 480px) {
+  .card {
+    flex: 1 1 100%; /* スマホサイズで1枚表示 */
+    max-width: 100%;
+  }
+}
+  
