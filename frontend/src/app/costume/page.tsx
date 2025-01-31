@@ -2,6 +2,7 @@
 import { FormEvent, useState } from 'react';
 import { costumeData } from '@/app/components/costumeData';
 import Header from '@/app/components/layout/header/page';
+import Footer from '@/app/components/layout/footer/page';
 import { CostumeCard } from '@/app/components/ui/costumeCard/costumeCard';
 import styles from './costume.module.css';
 
@@ -14,6 +15,8 @@ export default function Home() {
     e.preventDefault();
     setIsSubmitting(true);
     setMessage('');
+
+    console.log('Selected Option:', selectedOption);
 
     try {
       const response = await fetch('/api/vote', {
@@ -76,6 +79,7 @@ export default function Home() {
           )}
         </form>
       </div>
+      <Footer />
     </>
   );
 }
