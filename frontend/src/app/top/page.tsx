@@ -1,11 +1,21 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '../components/layout/header/page';
 import Footer from '../components/layout/footer/page';
 import styles from './top.module.css';
 import { ProfileCard } from '../components/ui/profileCard/profileCard';
+import { RankingCard } from '../components/ui/rankingCard/rankingCard';
+
+interface RankingItem {
+  rank: number;
+  votes: number;
+  src: string;
+  alt: string;
+}
 
 export default function Home() {
+  const [rankingData, setRankingData] = useState<RankingItem[]>([]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -14,7 +24,7 @@ export default function Home() {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        console.log('取得したデータ:', data);
+        console.log(data);
       } catch (error) {
         console.error('データの取得に失敗しました:', error);
       }
@@ -39,7 +49,7 @@ export default function Home() {
       </section>
       <section className={`${styles.carouselItem} ${styles.content}`}>
         <h2 className={styles.title}>人気の衣装は&#63;</h2>
-        <p>1位</p>
+        {rankingData.length > 0 ? <RankingCard items={rankingData} /> : <p>データを取得中...</p>}
       </section>
       <Footer className={styles.carouselItem}></Footer>
     </div>
