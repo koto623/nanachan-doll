@@ -63,16 +63,19 @@ export default function Home() {
           <button type="submit" disabled={isSubmitting} className={styles.submitButton}>
             {isSubmitting ? '送信中...' : '投票する'}
           </button>
-        {message && (
-          <div
-            className={`mt-4 p-3 rounded ${
-              message.includes('エラー') ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'
-            }`}
-          >
-            {message}
-          </div>
-        )}
-      </form>
+          {message && (
+            <div
+              className={`mt-4 p-3 rounded ${
+                message.includes('エラー')
+                  ? 'bg-red-100 text-red-700'
+                  : 'bg-green-100 text-green-700'
+              }`}
+            >
+              {message}
+            </div>
+          )}
+        </form>
+      </div>
     </>
   );
 }
