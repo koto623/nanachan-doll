@@ -5,7 +5,6 @@ import Footer from '../components/layout/footer/page';
 import styles from './top.module.css';
 import { ProfileCard } from '../components/ui/profileCard/profileCard';
 import { RankingCard } from '../components/ui/rankingCard/rankingCard';
-import { title } from 'process';
 
 interface RankingItem {
   rank: number;

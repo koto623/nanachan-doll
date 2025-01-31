@@ -1,10 +1,8 @@
-// app/page.tsx
 'use client';
 import { FormEvent, useState } from 'react';
 import { costumeData } from '@/app/components/costumeData';
 import Header from '@/app/components/layout/header/page';
 import { CostumeCard } from '@/app/components/ui/costumeCard/costumeCard';
-
 import styles from './costume.module.css';
 
 export default function Home() {
@@ -62,22 +60,19 @@ export default function Home() {
               />
             ))}
           </div>
-
           <button type="submit" disabled={isSubmitting} className={styles.submitButton}>
             {isSubmitting ? '送信中...' : '投票する'}
           </button>
-
-          {message && (
-            <div
-              className={`${styles.message} ${
-                message.includes('エラー') ? styles.messageError : styles.messageSuccess
-              }`}
-            >
-              {message}
-            </div>
-          )}
-        </form>
-      </div>
+        {message && (
+          <div
+            className={`mt-4 p-3 rounded ${
+              message.includes('エラー') ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'
+            }`}
+          >
+            {message}
+          </div>
+        )}
+      </form>
     </>
   );
 }
