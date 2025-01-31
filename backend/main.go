@@ -3,10 +3,10 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"log"
 	"net/http"
 	"sync"
-	"io"
 )
 
 // VoteData は投票データを管理する構造体
@@ -65,46 +65,43 @@ func enableCORS(next http.HandlerFunc) http.HandlerFunc {
 }
 
 func handleVote(w http.ResponseWriter, r *http.Request) {
-    if r.Method != http.MethodPost {
-        http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
-        return
-    }
+	if r.Method != http.MethodPost {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
 
-    body, err := io.ReadAll(r.Body)
-    if err != nil {
-        log.Printf("Error reading body: %v", err)
-        sendJSONResponse(w, false, "Error reading request body", "", 0)
-        return
-    }
+	body, err := io.ReadAll(r.Body)
+	if err != nil {
+		log.Printf("Error reading body: %v", err)
+		sendJSONResponse(w, false, "Error reading request body", "", 0)
+		return
+	}
 
-    // キーを "vote" に変更
-    var voteRequest struct {
-        Vote string `json:"vote"`
-    }
+	// 構造体を int 型で定義
+	var voteRequest struct {
+		Vote int `json:"vote"`
+	}
 
-    if err := json.Unmarshal(body, &voteRequest); err != nil {
-        log.Printf("Error decoding JSON: %v", err)
-        log.Printf("Received body: %s", string(body))
-        sendJSONResponse(w, false, "Invalid JSON format", "", 0)
-        return
-    }
+	if err := json.Unmarshal(body, &voteRequest); err != nil {
+		log.Printf("Error decoding JSON: %v", err)
+		log.Printf("Received body: %s", string(body))
+		sendJSONResponse(w, false, "Invalid JSON format", "", 0)
+		return
+	}
 
-    log.Printf("Received JSON: %+v\n", voteRequest)
+	log.Printf("Received JSON: %+v\n", voteRequest)
 
-    vote := voteRequest.Vote
-    if vote == "" {
-        sendJSONResponse(w, false, "No vote option selected", "", 0)
-        return
-    }
+	// int型を文字列に変換してマップのキーとして使用
+	vote := fmt.Sprintf("%d", voteRequest.Vote)
 
-    voteData.mu.Lock()
-    voteData.Votes[vote]++
-    voteData.mu.Unlock()
-    fmt.Println(voteData.Votes)
+	voteData.mu.Lock()
+	voteData.Votes[vote]++
 	count := voteData.Votes[vote]
+	voteData.mu.Unlock()
+
+	fmt.Println(voteData.Votes)
 	sendJSONResponse(w, true, "投票が完了しました", vote, count)
 }
-
 
 func sendJSONResponse(w http.ResponseWriter, success bool, message, option string, votes int) {
 	response := VoteResponse{
@@ -119,24 +116,24 @@ func sendJSONResponse(w http.ResponseWriter, success bool, message, option strin
 }
 
 func handleResult(w http.ResponseWriter, r *http.Request) {
-    if r.Method != http.MethodGet {
-        http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
-        return
-    }
+	if r.Method != http.MethodGet {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
 
-    voteData.mu.Lock()
-    // 投票データのコピーを作成
-    results := make(map[string]int)
-    for k, v := range voteData.Votes {
-        results[k] = v
-    }
-    voteData.mu.Unlock()
+	voteData.mu.Lock()
+	// 投票データのコピーを作成
+	results := make(map[string]int)
+	for k, v := range voteData.Votes {
+		results[k] = v
+	}
+	voteData.mu.Unlock()
 
-    // レスポンスの送信
-    w.Header().Set("Content-Type", "application/json")
-    if err := json.NewEncoder(w).Encode(results); err != nil {
-        log.Printf("Error encoding response: %v", err)
-        http.Error(w, "Internal server error", http.StatusInternalServerError)
-        return
-    }
+	// レスポンスの送信
+	w.Header().Set("Content-Type", "application/json")
+	if err := json.NewEncoder(w).Encode(results); err != nil {
+		log.Printf("Error encoding response: %v", err)
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+		return
+	}
 }

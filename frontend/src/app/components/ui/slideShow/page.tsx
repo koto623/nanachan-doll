@@ -50,7 +50,7 @@ export default function SlideShow({
             priority={index === 0}
             quality={100}
             sizes="100vw"
-            style={{ objectFit: 'cover' }}
+            style={{ objectFit: 'cover', objectPosition: 'top' }}
           />
         </div>
       ))}

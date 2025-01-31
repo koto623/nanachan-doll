@@ -1,8 +1,13 @@
-"use client"
+'use client';
 import { FormEvent, useState } from 'react';
+import { costumeData } from '@/app/components/costumeData';
+import Header from '@/app/components/layout/header/page';
+import Footer from '@/app/components/layout/footer/page';
+import { CostumeCard } from '@/app/components/ui/costumeCard/costumeCard';
+import styles from './costume.module.css';
 
 export default function Home() {
-  const [selectedOption, setSelectedOption] = useState('');
+  const [selectedOption, setSelectedOption] = useState(-1);
   const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -11,18 +16,19 @@ export default function Home() {
     setIsSubmitting(true);
     setMessage('');
 
+    console.log('Selected Option:', selectedOption);
+
     try {
-        const response = await fetch('/api/vote', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ vote: selectedOption }),
-          });
+      const response = await fetch('/api/vote', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ vote: selectedOption }),
+      });
 
       if (response.ok) {
         setMessage('投票が完了しました！');
-        setSelectedOption('');
       } else {
         setMessage('投票の送信中にエラーが発生しました。');
       }
@@ -34,46 +40,46 @@ export default function Home() {
     }
   };
 
+  const images = [
+    { src: '/images/costume01.jpg', alt: 'costume1' },
+    { src: '/images/costume02.jpg', alt: 'costume2' },
+    { src: '/images/costume03.jpg', alt: 'costume3' },
+  ];
+
   return (
-    <div className="p-6 max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-6">投票システム</h1>
+    <>
+      <Header images={images} mainText="2024年の衣装紹介" subText="" className={styles.w100} />
+      <div className={styles.container}>
+        <h1 className={styles.title}>衣装紹介</h1>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="space-y-2">
-          {[1, 2, 3, 4, 5].map((num) => (
-            <label key={num} className="block">
-              <input
-                type="radio"
-                name="vote"
-                value={`option${num}`}
-                checked={selectedOption === `option${num}`}
-                onChange={(e) => setSelectedOption(e.target.value)}
-                className="mr-2"
-                required
+        <form onSubmit={handleSubmit}>
+          <div className={styles.gridContainer}>
+            {costumeData.map((costume) => (
+              <CostumeCard
+                key={costume.id}
+                costume={costume}
+                isSelected={selectedOption === costume.id}
+                onSelect={() => setSelectedOption(costume.id)}
               />
-              選択肢{num}
-            </label>
-          ))}
-        </div>
-
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded disabled:bg-blue-300 w-full"
-        >
-          {isSubmitting ? '送信中...' : '投票する'}
-        </button>
-
-        {message && (
-          <div
-            className={`mt-4 p-3 rounded ${
-              message.includes('エラー') ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'
-            }`}
-          >
-            {message}
+            ))}
           </div>
-        )}
-      </form>
-    </div>
+          <button type="submit" disabled={isSubmitting} className={styles.submitButton}>
+            {isSubmitting ? '送信中...' : '投票する'}
+          </button>
+          {message && (
+            <div
+              className={`mt-4 p-3 rounded ${
+                message.includes('エラー')
+                  ? 'bg-red-100 text-red-700'
+                  : 'bg-green-100 text-green-700'
+              }`}
+            >
+              {message}
+            </div>
+          )}
+        </form>
+      </div>
+      <Footer />
+    </>
   );
 }
