@@ -6,6 +6,7 @@ interface RankingItem {
   votes: number;
   src: string;
   alt: string;
+  title: string;
 }
 
 interface RankingCardProps {
@@ -18,6 +19,7 @@ export const RankingCard = ({ items }: RankingCardProps) => (
       <div key={item.rank} className={styles.rankingItem}>
         <div className={styles.rankInfo}>
           <span className={styles.rank}>{item.rank}位</span>
+          <span>{item.title}</span>
           <span className={styles.votes}>♥ {item.votes}</span>
         </div>
         <Image src={item.src} alt={item.alt} className={styles.image} width={300} height={400} />

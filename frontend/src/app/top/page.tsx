@@ -5,12 +5,14 @@ import Footer from '../components/layout/footer/page';
 import styles from './top.module.css';
 import { ProfileCard } from '../components/ui/profileCard/profileCard';
 import { RankingCard } from '../components/ui/rankingCard/rankingCard';
+import { title } from 'process';
 
 interface RankingItem {
   rank: number;
   votes: number;
   src: string;
   alt: string;
+  title: string;
 }
 
 export default function Home() {
@@ -46,6 +48,12 @@ export default function Home() {
     { src: '/images/costume25.jpg', alt: 'costume25' },
   ];
 
+  const mockData = [
+    { rank: 1, votes: 100, src: '/images/costume17.jpg', alt: 'costume17', title: 'title1' },
+    { rank: 2, votes: 80, src: '/images/costume07.jpg', alt: 'costume07', title: 'title2' },
+    { rank: 3, votes: 50, src: '/images/costume25.jpg', alt: 'costume25', title: 'title3' },
+  ];
+
   return (
     <div className={styles.carousel}>
       <Header
@@ -60,6 +68,10 @@ export default function Home() {
       </section>
       <section className={`${styles.carouselItem} ${styles.content}`}>
         <h2 className={styles.title}>人気の衣装は&#63;</h2>
+        <p className={styles.description}>
+          投票数の多い衣装を紹介します！​皆さんもお気に入りの衣装があったら投票してくださいね
+        </p>
+        <RankingCard items={mockData} />
         {rankingData.length > 0 ? <RankingCard items={rankingData} /> : <p>データを取得中...</p>}
       </section>
       <Footer className={styles.carouselItem}></Footer>

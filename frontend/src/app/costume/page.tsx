@@ -47,9 +47,9 @@ export default function Home() {
 
   return (
     <>
-      <Header images={images} mainText="2024年の衣装紹介" subText="" />
+      <Header images={images} mainText="2024年の衣装紹介" subText="" className={styles.w100} />
       <div className={styles.container}>
-        <h1 className={styles.title}>衣装</h1>
+        <h1 className={styles.title}>衣装紹介</h1>
 
         <form onSubmit={handleSubmit}>
           <div className={styles.gridContainer}>
