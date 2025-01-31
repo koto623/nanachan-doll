@@ -29,8 +29,8 @@
     background-color: #fff;
     overflow: hidden;
     text-align: center;
-    flex: 1 1 calc(33.333% - 5rem);
-    max-width: calc(33.333% - 5rem);
+    flex: 1 1 calc(33.333% - 3rem);
+    max-width: calc(33.333% - 3rem);
 }
   
 .image {
