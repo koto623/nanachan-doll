@@ -9,8 +9,11 @@ services:
       - ./frontend:/app # ホスト側のコードをコンテナ内にマウント
       - /app/node_modules # node_modules をコンテナ内で管理
       - /app/.yarn
+      - /app/.next
     environment:
-      NODE_ENV: development # 環境変数を設定
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
     networks:
       - net_nana
 
@@ -25,7 +28,6 @@ services:
     command: sh -c "go mod download && go run main.go" # 自動的に変更を反映するコマンド
     networks:
       - net_nana
-      
 networks:
   net_nana:
     external: true
