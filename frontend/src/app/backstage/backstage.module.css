@@ -1,0 +1,88 @@
+.carousel {
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory;
+    height: 100vh;
+}
+.carouselItem {
+    scroll-snap-align: start;
+}
+  
+.carouselItem:last-child {
+    scroll-snap-align: end;
+    height: fit-content;
+}
+  
+.content {
+    padding: 5%;
+    width: 100%;
+}
+
+.container {
+    font-family: Arial, sans-serif;
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.card {
+    width: 100%;
+    background-color: #fff;
+    overflow: hidden;
+    text-align: center;
+    flex: 1 1 calc(33.333% - 3rem);
+    max-width: calc(33.333% - 3rem);
+}
+  
+.image {
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+}
+  
+.cardBody {
+    padding: 1rem;
+}
+  
+.cardText {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.8; 
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.cardText h2 {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.cardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.cardBody {
+    padding: 1rem 0rem 5rem 0rem;
+}
+  
+.cardText {
+    font-size: 1rem;
+    color: #333;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .card {
+      flex: 1 1 calc(50% - 1rem);
+      max-width: calc(50% - 1rem);
+  }
+}
+ 
+@media (max-width: 480px) {
+  .card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+  
