@@ -1,0 +1,70 @@
+.container {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .header {
+    background: #f8f8f8;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .title {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    background: #014b9f;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  
+ .access {
+    font-size: 20px;
+    text-align: center;
+ }
+
+
+  .heading {
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+  }
+  
+  .mapimage {
+    width: 50%;
+    max-width: 900px;
+    display: block;
+    margin: 10px auto;
+  }
+  
+  .facilities {
+    display: flex;
+    flex-direction: column; /* 子要素を縦並び */
+    gap: 10px; /* 文字と画像の間隔を調整 */
+    margin: 30px 0 10px;
+    text-align: center;
+}
+
+  .factitle{
+        position: relative;
+        font-size: 2.0rem;
+        font-weight: bold;
+        color: #014b9f;
+        text-align: center;
+        min-width: 100px;
+        margin-right: 1rem;
+        margin-left: 1rem;
+        order: 2;
+}
+
+  
+  .facility img {
+    width: 450px;
+    height: auto;
+    margin-right: 15px;
+    display: block;
+    margin: 10px auto;
+    
+  }
