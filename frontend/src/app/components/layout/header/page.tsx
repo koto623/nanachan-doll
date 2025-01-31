@@ -5,33 +5,22 @@ import styles from './header.module.css';
 
 type HeaderProps = {
   className?: string;
+  images: { src: string; alt: string }[];
+  mainText: string;
+  subText: string;
 };
 
-const images = [
-  {
-    src: '/images/slide1.png',
-    alt: 'Slide 1',
-  },
-  {
-    src: '/images/slide2.png',
-    alt: 'Slide 2',
-  },
-  {
-    src: '/images/slide3.png',
-    alt: 'Slide 3',
-  },
-];
-
-export default function Header({ className = '' }: HeaderProps) {
+export default function Header({
+  className = '',
+  images,
+  mainText,
+  subText,
+}:HeaderProps) {
   return (
     <header className={`${styles.header} ${className}`}>
       <Navbar />
       <SlideShow images={images} />
-      <PageTitle
-        mainText="ナナちゃん人形紹介"
-        subText="名古屋駅前の顔として愛され、​名鉄百貨店の広報部員として活躍する​大きなマスコット。​"
-        className={styles.pageTitle}
-      />
-    </header>
+      <PageTitle mainText={mainText} subText={subText} className={styles.pageTitle} />
+      </header>
   );
 }
