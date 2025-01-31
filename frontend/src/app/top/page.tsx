@@ -40,9 +40,20 @@ export default function Home() {
     { label: '素材', value: 'FRP硬質塩ビ樹脂' },
   ];
 
+  const images = [
+    { src: '/images/costume17.jpg', alt: 'costume17' },
+    { src: '/images/costume07.jpg', alt: 'costume07' },
+    { src: '/images/costume25.jpg', alt: 'costume25' },
+  ];
+
   return (
     <div className={styles.carousel}>
-      <Header className={styles.carouselItem}></Header>
+      <Header
+        images={images}
+        mainText="ナナちゃん人形紹介"
+        subText="名古屋駅前の顔として愛され、名鉄百貨店の広報部員として活躍する大きなマスコット。"
+        className={styles.carouselItem} // 追加のスタイルを指定
+      ></Header>
       <section className={`${styles.carouselItem} ${styles.content}`}>
         <h2 className={styles.title}>プロフィール</h2>
         <ProfileCard data={profileData} />
