@@ -1,0 +1,39 @@
+.container {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .header {
+    background: #f8f8f8;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .content {
+    padding: 20px;
+  }
+  
+  h2 {
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+  }
+  
+  .map-image {
+    width: 80%;
+    max-width: 400px;
+    display: block;
+    margin: 10px auto;
+  }
+  
+  .facility {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+  }
+  
+  .facility img {
+    width: 120px;
+    height: auto;
+    margin-right: 15px;
+  }
