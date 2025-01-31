@@ -56,6 +56,10 @@
   border: 1px solid #eee;
 }
 
+.description{
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   .profile {
     margin-top: 10%;
